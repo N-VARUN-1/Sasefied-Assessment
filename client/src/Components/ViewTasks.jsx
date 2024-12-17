@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 export default function TaskList() {
     const [tasks, setTasks] = useState([]);
+    const [selectedTasks, setSelectedTasks] = useState([]);
 
     useEffect(() => {
         const fetchTasks = async () => {
@@ -31,6 +32,15 @@ export default function TaskList() {
         }
     };
 
+    // Handle checkbox change
+    const handleCheckboxChange = (taskId) => {
+        setSelectedTasks((prevSelectedTasks) =>
+            prevSelectedTasks.includes(taskId)
+                ? prevSelectedTasks.filter((id) => id !== taskId) // Deselect task
+                : [...prevSelectedTasks, taskId] // Select task
+        );
+    };
+
     return (
         <div className="container mx-auto p-6">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Task List</h2>
@@ -39,6 +49,9 @@ export default function TaskList() {
                     <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
                         <thead className="bg-gray-50">
                             <tr>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Select
+                                </th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Title
                                 </th>
@@ -59,6 +72,17 @@ export default function TaskList() {
                                     key={task._id}
                                     className="border-b hover:bg-gray-50"
                                 >
+                                    {/* Checkbox Column */}
+                                    <td className="px-6 py-4 text-center">
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedTasks.includes(task._id)}
+                                            onChange={() =>
+                                                handleCheckboxChange(task._id)
+                                            }
+                                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                                        />
+                                    </td>
                                     <td className="px-6 py-4 text-gray-900 font-medium">
                                         {task.title}
                                     </td>
