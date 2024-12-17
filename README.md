@@ -18,3 +18,5 @@ Before running the project, Pre-requisites are given below:
   - Tailwind CSS
   - FlowBite React
   - React Icons
+
+*Dowload the Video.mp4 file in the Media to watch. 
