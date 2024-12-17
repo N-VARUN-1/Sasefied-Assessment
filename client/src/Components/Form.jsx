@@ -92,15 +92,17 @@ export default function Form() {
                     <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
                         Add a new task
                     </h2>
-                    {alert.message && (
-                        <Alert
-                            color={alert.type}
-                            icon={HiInformationCircle}
-                            onDismiss={() => setAlert({ message: "", type: "" })}
-                        >
-                            <span className="font-medium">{alert.message}</span>
-                        </Alert>
-                    )}
+                    <div className="mb-3">
+                        {alert.message && (
+                            <Alert
+                                color={alert.type}
+                                icon={HiInformationCircle}
+                                onDismiss={() => setAlert({ message: "", type: "" })}
+                            >
+                                <span className="font-medium">{alert.message}</span>
+                            </Alert>
+                        )}
+                    </div>
                     <form onSubmit={handleSubmit}>
                         <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div className="sm:col-span-2">
